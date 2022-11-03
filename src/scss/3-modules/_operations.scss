@@ -1,0 +1,69 @@
+@use '../1-base/variables' as var;
+
+.operation__card {
+    padding: 2rem 2.4rem;
+    border-radius: 10px;
+
+    input {
+        text-align: center;
+        color: var.$text-color;
+        font-size: 1rem;
+    }
+
+    &--transfer{
+        background: var.$transfer-bg-color;
+    }
+
+    &--loan{
+        background: var.$loan-bg-color;
+    }
+
+    &--close{
+        background: var.$close-bg-color;
+    }
+}
+
+
+.operation {
+    &__title{
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+    &__form{
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: 2fr 2fr 1fr;
+        gap: 10px;
+
+        input {
+            grid-row: 1;
+        }
+
+        label {
+            text-align: center;
+            grid-row: 2;
+            font-size: 0.9rem;
+        }
+    }
+
+    &__input{
+        background-color: var.$form-input-bg-color;
+        border: none;
+        border-radius: 10px;
+        padding: 0.6rem;
+        width: 8.5rem;
+        transition: 0.5s all;
+
+        &:focus {
+            background-color: var.$form-input-focus-bg-color;
+        }
+    }
+}
+
+.btn--operation {
+    border-radius: 10px;
+    font-size: 1.2rem;
+    width: 4rem;
+}

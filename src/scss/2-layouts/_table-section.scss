@@ -1,0 +1,7 @@
+@use '../1-base/variables' as var;
+
+.table{
+    background-color: var.$white-255;
+    border-radius: 10px;
+    overflow: scroll;
+}

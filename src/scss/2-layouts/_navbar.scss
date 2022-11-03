@@ -1,0 +1,38 @@
+@use '../1-base/variables' as var;
+
+.header{
+    padding: 0 1rem;
+}
+
+/*Estilização da logo*/
+.navbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__loginSugestion {
+        font-size: 1.2rem;
+        font-weight: 500;
+    }
+
+    &__logo{
+        height: 3.35rem;
+    }
+
+    &__btn{
+        font-size: 1.4rem;
+    }
+
+    &__input{
+        background-color: var.$white-255;
+        font-size: 1.1rem;
+        text-align: center;
+        margin-right: 5px;
+
+        &::placeholder{
+            color: var.$white-187;
+            opacity: 1; /*Para o fireFox*/
+        }
+    }
+
+}

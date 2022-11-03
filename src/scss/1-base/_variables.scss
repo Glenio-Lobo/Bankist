@@ -1,0 +1,30 @@
+$bg-color: #f3f3f3;
+$text-color: #444;
+
+/* Table of deposit and withdrawal colors*/
+$deposit-bg-color: linear-gradient(to top left, #39b385, #9be15d);
+$withdrawal-bg-color: linear-gradient(to top left, #e52a5a, #ff585f);
+$value-in-color: #66c873;
+$value-out-color: #f5465d;
+
+/* Operation cards colors */
+$transfer-bg-color: linear-gradient(to top left, #ffb003, #ffcb03);
+$loan-bg-color: linear-gradient(to top left, #39b385, #9be15d);
+$close-bg-color: linear-gradient(to top left, #e52a5a, #ff585f);
+
+/* Operation form input colors */
+$form-input-bg-color: rgba(255, 255, 255, 0.4);
+$form-input-focus-bg-color: rgba(255, 255, 255, 0.6);
+$form-btn-focus-bg-color: rgba(255, 255, 255, 0.8);
+
+/*Variação da cor Branca*/
+$white-255: #fff;
+$white-204: #ccc;
+$white-187: #bbb;
+$white-238: #eee;
+$white-119: #777;
+$white-136: #888;
+$white-102: #666;
+
+/*Variações da cor preta*/
+$black-51: #333;

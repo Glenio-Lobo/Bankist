@@ -1,0 +1,45 @@
+@use '../1-base/variables' as var;
+
+
+.table {
+
+    &__card{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid var.$white-238;
+        padding: 2rem 2.1rem;
+    }
+
+    &__date, &__title{
+        display: inline;
+    }
+
+    &__date{
+        color: var.$white-102;
+        font-size: 0.7rem;
+    }
+
+    &__title{
+        margin-right: 20px;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        color: var.$white-238;
+        font-weight: 500;
+        padding: 0px 10px;
+        border-radius: 10px;
+
+        &--deposit{
+            background: var.$deposit-bg-color;
+        }
+
+        &--withdrawal{
+            background: var.$withdrawal-bg-color;
+        }
+    }
+
+    &__value{
+        font-size: 1.08rem;
+    }
+    
+}

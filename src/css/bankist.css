@@ -1,0 +1,259 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+*::after, *::before {
+  box-sizing: inherit;
+}
+
+input[type=text], input[type=password], input[type=number] {
+  outline: none;
+}
+
+input:focus {
+  outline: none;
+}
+
+/* Table of deposit and withdrawal colors*/
+/* Operation cards colors */
+/* Operation form input colors */
+/*Variação da cor Branca*/
+/*Variações da cor preta*/
+body {
+  font-family: "Poppins", sans-serif;
+  color: #444;
+  background-color: #f3f3f3;
+  padding: 20px;
+  height: 100vh;
+}
+
+.header {
+  padding: 0 1rem;
+}
+
+/*Estilização da logo*/
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.navbar__loginSugestion {
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+.navbar__logo {
+  height: 3.35rem;
+}
+.navbar__btn {
+  font-size: 1.4rem;
+}
+.navbar__input {
+  background-color: #fff;
+  font-size: 1.1rem;
+  text-align: center;
+  margin-right: 5px;
+}
+.navbar__input::placeholder {
+  color: #bbb;
+  opacity: 1; /*Para o fireFox*/
+}
+
+.main {
+  display: grid;
+  max-width: 75%;
+  margin: 4rem auto;
+  grid-template-columns: 4fr 3fr;
+  grid-template-rows: auto repeat(3, 10rem) auto;
+  gap: 1.5rem;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.balance, .info {
+  grid-column: 1/span 2;
+}
+
+.table {
+  grid-row: 2/span 3;
+}
+
+.balance {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.balance__title {
+  align-self: flex-end;
+}
+.balance__money {
+  font-size: 3rem;
+  font-weight: 400;
+}
+.balance__current {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+.balance__date {
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.table {
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: scroll;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.info__values {
+  display: flex;
+}
+.info__title, .info__amount {
+  display: inline;
+}
+.info__title {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  margin-right: 2px;
+}
+.info__amount {
+  font-size: 1.2rem;
+  font-weight: 400;
+  margin-right: 20px;
+}
+.info__amount--in, .info__amount--interest {
+  color: #66c873;
+}
+.info__amount--out {
+  color: #f5465d;
+}
+.info__sort {
+  font-size: 0.9rem;
+}
+.info__sort:hover {
+  cursor: pointer;
+  color: #888;
+}
+.info__logout {
+  font-size: 0.8rem;
+}
+.info__logout span {
+  font-weight: bold;
+}
+
+.btn {
+  border: none;
+  cursor: pointer;
+}
+
+/*Inputs do Navbar*/
+.navbar__input {
+  padding: 0.5rem 20px;
+  border-radius: 50px;
+  width: 7.5rem;
+  border: 1px solid #f3f3f3;
+  transition: all 0.5s;
+  color: #444;
+}
+.navbar__input:focus {
+  border-color: #ccc;
+}
+
+.table__card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #eee;
+  padding: 2rem 2.1rem;
+}
+.table__date, .table__title {
+  display: inline;
+}
+.table__date {
+  color: #666;
+  font-size: 0.7rem;
+}
+.table__title {
+  margin-right: 20px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: #eee;
+  font-weight: 500;
+  padding: 0px 10px;
+  border-radius: 10px;
+}
+.table__title--deposit {
+  background: linear-gradient(to top left, #39b385, #9be15d);
+}
+.table__title--withdrawal {
+  background: linear-gradient(to top left, #e52a5a, #ff585f);
+}
+.table__value {
+  font-size: 1.08rem;
+}
+
+.operation__card {
+  padding: 2rem 2.4rem;
+  border-radius: 10px;
+}
+.operation__card input {
+  text-align: center;
+  color: #444;
+  font-size: 1rem;
+}
+.operation__card--transfer {
+  background: linear-gradient(to top left, #ffb003, #ffcb03);
+}
+.operation__card--loan {
+  background: linear-gradient(to top left, #39b385, #9be15d);
+}
+.operation__card--close {
+  background: linear-gradient(to top left, #e52a5a, #ff585f);
+}
+
+.operation__title {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+.operation__form {
+  display: grid;
+  grid-template-rows: auto auto;
+  grid-template-columns: 2fr 2fr 1fr;
+  gap: 10px;
+}
+.operation__form input {
+  grid-row: 1;
+}
+.operation__form label {
+  text-align: center;
+  grid-row: 2;
+  font-size: 0.9rem;
+}
+.operation__input {
+  background-color: rgba(255, 255, 255, 0.4);
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem;
+  width: 8.5rem;
+  transition: 0.5s all;
+}
+.operation__input:focus {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+.btn--operation {
+  border-radius: 10px;
+  font-size: 1.2rem;
+  width: 4rem;
+}
+
+/*# sourceMappingURL=bankist.css.map */

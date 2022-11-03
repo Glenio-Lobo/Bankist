@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bankist</title>
+    <link rel="stylesheet" href="./src/css/bankist.css">
+    <link rel="shortcut icon" href="./src/img/icon.png" type="image/x-icon">
+    <!-- GOOGLE FONTS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500&display=swap" rel="stylesheet">
+    <!-- END GOOGLE FONTS -->
+</head>
+<body>
+    <header class="header" id="header">
+        <nav class="navbar">
+            <p class="navbar__loginSugestion">Log in to get started</p>
+            <img src="./src/img/logo.png" alt="bankist logo" class="navbar__logo">
+            <form class="navbar__login">
+                <input type="text" id='username' name="user" class="navbar__input" placeholder="user">
+                <input type="password" id='password' name="password" class='navbar__input' 
+                    placeholder="PIN" maxlength="4">
+                <button type="submit" class="btn navbar__btn">&rarr;</button>
+            </form>
+        </nav>
+    </header>
+
+    <main class="main" id="main">
+        <section class="balance">
+            <div class="balance__title">
+                <h1 class="balance__current">Current balance</h1>
+                <p class="balance__date">As of 12/09/2022, 18:33</p>
+            </div>
+            
+            <h1 class="balance__money">25 952,59 €</h1>
+        </section>
+
+        <section class="table">
+            <!-- <div class="table__card">
+                <div class="table__info">
+                    <p class="table__title table__title--deposit">0 deposit</p>
+                    <p class="table__date">2/26/2020</p>
+                </div>
+                
+                <p class="table__value table__value--deposit">1300,00 €</p>
+            </div> -->
+        </section>
+
+        
+        <div class="operation operation__card operation__card--transfer">
+            <h2 class="operation__title">Transfer money</h2>
+
+            <form class="operation__form">
+                <label for="transfer__user" class="operation__label">Transfer to</label>
+                <input type="text" name="transfer__user" id='transfer__user' class="operation__input">
+                <label for="transfer__amount" class="operation__label">Amount</label>
+                <input type="number" name="transfer__amount" id='transfer__amount' class='operation__input'>
+                <button class='btn btn--operation btn--transfer'>&rarr;</button>
+            </form>
+        </div>
+
+        <div class="operation operation__card operation__card--loan">
+            <h2 class="operation__title">Request loan</h2>
+
+            <form class="operation__form">
+                <label for="loan__amount" class="operation__label">Amount</label>
+                <input type="number" name="transfer__amount" id='loan__amount' class='operation__input'>
+                <button class='btn btn--operation btn--loan'>&rarr;</button>
+            </form>
+        </div>
+
+        <div class="operation operation__card operation__card--close">
+            <h2 class="operation__title">Close account</h2>
+
+            <form class="operation__form">
+                <label for="close__user" class="operation__label">Confirm user</label>
+                <input type="text" name="close__user" id='close__user' class="operation__input">
+                <label for="close__pin" class="operation__label">Confirm pin</label>
+                <input type="password" name="close__amount" id='close__pin' class='operation__input' maxlength="4">
+                <button class='btn btn--operation btn--interest'>&rarr;</button>
+            </form>
+        </div>
+        
+
+        <section class="info">
+
+            <div class="info__values">
+                <div class="info__in">
+                    <p class="info__title">in</p>
+                    <h3 class="info__amount info__amount--in">131 479,20 €</h3>
+                </div>
+
+                <div class="info__out">
+                    <p class="info__title">out</p>
+                    <h3 class="info__amount info__amount--out">131 479,20 €</h3>
+                </div>
+
+                <div class="info_interest">
+                    <p class="info__title">interest</p>
+                    <h3 class="info__amount info__amount--interest">131 479,20 €</h3>
+                </div>
+
+                <p class="info__sort">
+                    <span>&darr;</span> SORT
+                </p>
+            </div>
+            
+            <div class="info__logout">
+                <p>You will be logged out in <span class="countdown">00:00</span></p>
+            </div>
+        </section>
+    </main>
+
+    <script type='module' src="./src/js/bankist.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+@use '../1-base/variables' as var;
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    
+    &__values{
+        display: flex;
+    }
+
+    &__title, &__amount{
+        display: inline;
+    }
+
+    &__title{
+        text-transform: uppercase;
+        font-size: 0.7rem;
+        margin-right: 2px;
+    }
+
+    &__amount{
+        font-size: 1.2rem;
+        font-weight: 400;
+        margin-right: 20px;
+
+        &--in, &--interest{
+            color: var.$value-in-color;
+        }
+
+        &--out{
+            color: var.$value-out-color;
+        }
+    }
+
+    &__sort{
+        font-size: 0.9rem;
+
+        &:hover{
+            cursor: pointer;
+            color: var.$white-136;
+        }
+    }
+
+    &__logout{
+        font-size: 0.8rem;
+
+        span {
+            font-weight: bold;
+        }
+    }
+}
