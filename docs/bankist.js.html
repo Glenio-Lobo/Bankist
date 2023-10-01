@@ -128,6 +128,7 @@ const userCountdown = document.querySelector('.countdown');
 
 init();
 
+/** Função de incialização  */
 function init(){
   criarUsernames();
 }
@@ -219,26 +220,32 @@ function calculateBalance(movements){
   }, 0);
 }
 
-/*Mostra o valor total do usuário na tela*/
+/**
+ * Updates de Ui with the account balance of the current logged user
+ * @param {Array&lt;Array&lt;number|string>>} movements - Logged User Account Movements
+ */
 function showBalance(movements){
   //Calcula o valor total do usuario
   let balanceValue =  calculateBalance(movements);
   let dateNow = new Date();
-  let [day, month, year, hour, minute] = [`${dateNow.getDate()}`.padStart(2, 0), 
-                                          `${dateNow.getMonth()}`.padStart(2, 0), 
+  let [day, month, year, hour, minute] = [`${dateNow.getDate()}`.padStart(2, '0'), 
+                                          `${dateNow.getMonth()}`.padStart(2, '0'), 
                                              dateNow.getFullYear(),
-                                          `${dateNow.getHours()}`.padStart(2, 0), 
-                                          `${dateNow.getMinutes()}`.padStart(2, 0)];
+                                          `${dateNow.getHours()}`.padStart(2, '0'), 
+                                          `${dateNow.getMinutes()}`.padStart(2, '0')];
 
   balanceDate.textContent = `As of ${day}/${month}/${year}, ${hour}:${minute}`;
   userBalance.textContent = `${formatMoneyString(currentUser, balanceValue)}`;
 }
 
-/* Mostra todos os movimentos da conta do usuário */
+/**
+ * Sorts the user account movements
+ * @param {Account} currentUser - Current logged user
+ * @param {boolean} [toSort=false]   - Indicates if the movements are already sorted
+ */
 function showMovements(currentUser, toSort = false){
   let html;
   let type;
-  let movDay, movMonth, movYear;
 
   //Ordena se necessário
   let auxiliarMovements = toSort ? currentUser.movements.slice().sort((a,b)=>a[0]-b[0]) : currentUser.movements;
@@ -261,15 +268,26 @@ function showMovements(currentUser, toSort = false){
   });
 }
 
-/* Funções para calcular o sumário da aplicação, recebem um array de movimentos*/
+/**
+ * Calculates the amount of money thats in from user account
+ * @param {Array&lt;Array&lt;number|string>>} movements - Logged User Account Movements
+ */
 function calculateAmountIn(movements){
   return movements.filter((value) => value[0] > 0).reduce((acumulator,value) => acumulator+value[0], 0);
 }
 
+/**
+ * Calculates the amount of money thats out from user account
+ * @param {Array&lt;Array&lt;number|string>>} movements - Logged User Account Movements
+ */
 function calculateAmountOut(movements){
   return movements.filter((value) => value[0] &lt; 0).reduce((acumulator,value) => acumulator+value[0], 0);
 }
 
+/**
+ * Calculates the logged user account interest
+ * @param {Array&lt;Array&lt;number|string>>} movements - Logged User Account Movements
+ */
 function calculateInterest(movements){
   return movements.filter((value) => value[0] > 0).map(dep => dep[0]*1.2/100).reduce((acc,value)=>acc+value, 0)
 }
@@ -281,12 +299,17 @@ function showSummary(movements){
   userAmountInterest.textContent = formatMoneyString(currentUser, calculateInterest(movements));
 }
 
+/**
+ * Updates the UI with the current user information
+ * @param {Account} currentUser - Current Logged User
+ */
 function updateUI(currentUser){
   showBalance(currentUser.movements);
   showMovements(currentUser);
   showSummary(currentUser.movements);
 }
 
+/** Log the User out */
 function logOut(){
   currentUserIndex = -1;
   currentUser = {};
@@ -380,13 +403,13 @@ closeBtn.addEventListener('click', function(e){
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#account1">account1</a></li><li><a href="global.html#account2">account2</a></li><li><a href="global.html#criarUsernames">criarUsernames</a></li><li><a href="global.html#formatDateString">formatDateString</a></li><li><a href="global.html#formatMoneyString">formatMoneyString</a></li><li><a href="global.html#initiateLogOutTimer">initiateLogOutTimer</a></li><li><a href="global.html#resetTimer">resetTimer</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#account1">account1</a></li><li><a href="global.html#account2">account2</a></li><li><a href="global.html#calculateAmountIn">calculateAmountIn</a></li><li><a href="global.html#calculateAmountOut">calculateAmountOut</a></li><li><a href="global.html#calculateInterest">calculateInterest</a></li><li><a href="global.html#criarUsernames">criarUsernames</a></li><li><a href="global.html#formatDateString">formatDateString</a></li><li><a href="global.html#formatMoneyString">formatMoneyString</a></li><li><a href="global.html#init">init</a></li><li><a href="global.html#initiateLogOutTimer">initiateLogOutTimer</a></li><li><a href="global.html#logOut">logOut</a></li><li><a href="global.html#resetTimer">resetTimer</a></li><li><a href="global.html#showBalance">showBalance</a></li><li><a href="global.html#showMovements">showMovements</a></li><li><a href="global.html#updateUI">updateUI</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Sep 30 2023 23:10:38 GMT-0300 (Horário Padrão de Brasília)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Sat Sep 30 2023 23:34:02 GMT-0300 (Horário Padrão de Brasília)
 </footer>
 
 <script> prettyPrint(); </script>

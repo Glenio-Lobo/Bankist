@@ -100,6 +100,7 @@ const userCountdown = document.querySelector('.countdown');
 
 init();
 
+/** Função de incialização  */
 function init(){
   criarUsernames();
 }
@@ -191,26 +192,32 @@ function calculateBalance(movements){
   }, 0);
 }
 
-/*Mostra o valor total do usuário na tela*/
+/**
+ * Updates de Ui with the account balance of the current logged user
+ * @param {Array<Array<number|string>>} movements - Logged User Account Movements
+ */
 function showBalance(movements){
   //Calcula o valor total do usuario
   let balanceValue =  calculateBalance(movements);
   let dateNow = new Date();
-  let [day, month, year, hour, minute] = [`${dateNow.getDate()}`.padStart(2, 0), 
-                                          `${dateNow.getMonth()}`.padStart(2, 0), 
+  let [day, month, year, hour, minute] = [`${dateNow.getDate()}`.padStart(2, '0'), 
+                                          `${dateNow.getMonth()}`.padStart(2, '0'), 
                                              dateNow.getFullYear(),
-                                          `${dateNow.getHours()}`.padStart(2, 0), 
-                                          `${dateNow.getMinutes()}`.padStart(2, 0)];
+                                          `${dateNow.getHours()}`.padStart(2, '0'), 
+                                          `${dateNow.getMinutes()}`.padStart(2, '0')];
 
   balanceDate.textContent = `As of ${day}/${month}/${year}, ${hour}:${minute}`;
   userBalance.textContent = `${formatMoneyString(currentUser, balanceValue)}`;
 }
 
-/* Mostra todos os movimentos da conta do usuário */
+/**
+ * Sorts the user account movements
+ * @param {Account} currentUser - Current logged user
+ * @param {boolean} [toSort=false]   - Indicates if the movements are already sorted
+ */
 function showMovements(currentUser, toSort = false){
   let html;
   let type;
-  let movDay, movMonth, movYear;
 
   //Ordena se necessário
   let auxiliarMovements = toSort ? currentUser.movements.slice().sort((a,b)=>a[0]-b[0]) : currentUser.movements;
@@ -233,15 +240,26 @@ function showMovements(currentUser, toSort = false){
   });
 }
 
-/* Funções para calcular o sumário da aplicação, recebem um array de movimentos*/
+/**
+ * Calculates the amount of money thats in from user account
+ * @param {Array<Array<number|string>>} movements - Logged User Account Movements
+ */
 function calculateAmountIn(movements){
   return movements.filter((value) => value[0] > 0).reduce((acumulator,value) => acumulator+value[0], 0);
 }
 
+/**
+ * Calculates the amount of money thats out from user account
+ * @param {Array<Array<number|string>>} movements - Logged User Account Movements
+ */
 function calculateAmountOut(movements){
   return movements.filter((value) => value[0] < 0).reduce((acumulator,value) => acumulator+value[0], 0);
 }
 
+/**
+ * Calculates the logged user account interest
+ * @param {Array<Array<number|string>>} movements - Logged User Account Movements
+ */
 function calculateInterest(movements){
   return movements.filter((value) => value[0] > 0).map(dep => dep[0]*1.2/100).reduce((acc,value)=>acc+value, 0)
 }
@@ -253,12 +271,17 @@ function showSummary(movements){
   userAmountInterest.textContent = formatMoneyString(currentUser, calculateInterest(movements));
 }
 
+/**
+ * Updates the UI with the current user information
+ * @param {Account} currentUser - Current Logged User
+ */
 function updateUI(currentUser){
   showBalance(currentUser.movements);
   showMovements(currentUser);
   showSummary(currentUser.movements);
 }
 
+/** Log the User out */
 function logOut(){
   currentUserIndex = -1;
   currentUser = {};
