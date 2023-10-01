@@ -5,6 +5,7 @@
   "default": "index.html",
   "scripts": {
     "start": "parcel index.html",
+    "doc": "jsdoc -c jsdoc.json",
     "build": "parcel build index.html --dist-dir ./dist",
     "sass": "sass --watch src/scss/bankist.scss:src/css/bankist.css",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,6 +13,7 @@
   "author": "globo",
   "license": "ISC",
   "devDependencies": {
+    "jsdoc": "^4.0.2",
     "parcel": "^2.7.0",
     "sass": "^1.55.0"
   },
