@@ -1,7 +1,9 @@
 // @ts-check
 'use strict';
 
+// @ts-ignore
 import 'core-js/stable';
+// @ts-ignore
 import 'regenerator-runtime/runtime';
 
 /////////////////////////////////////////////////
@@ -115,6 +117,7 @@ function initiateLogOutTimer(){
     minutes = Math.trunc(countTime/60);
     seconds = (countTime%60);
 
+    // @ts-ignore
     userCountdown.textContent = `${String(minutes).padStart(2,0)}:${String(seconds).padStart(2,0)}`;
 
     if(countTime === 0){
@@ -171,8 +174,10 @@ function formatMoneyString(currentUser, value){
 function formatDateString(date){
   const movDate = new Date(date);
   const now = new Date();
+  // @ts-ignore
   const dateDiff = Math.trunc(Math.abs((now-movDate)/(1000*60*60*24)));
   const options = { year: 'numeric', month: 'numeric', day: 'numeric' };
+  // @ts-ignore
   const dateFormart = new Intl.DateTimeFormat('pt-BR', options).format(movDate);
 
   if(dateDiff === 0)
@@ -206,7 +211,9 @@ function showBalance(movements){
                                           `${dateNow.getHours()}`.padStart(2, '0'), 
                                           `${dateNow.getMinutes()}`.padStart(2, '0')];
 
+  // @ts-ignore
   balanceDate.textContent = `As of ${day}/${month}/${year}, ${hour}:${minute}`;
+  // @ts-ignore
   userBalance.textContent = `${formatMoneyString(currentUser, balanceValue)}`;
 }
 
@@ -220,22 +227,30 @@ function showMovements(currentUser, toSort = false){
   let type;
 
   //Ordena se necessário
+  // @ts-ignore
   let auxiliarMovements = toSort ? currentUser.movements.slice().sort((a,b)=>a[0]-b[0]) : currentUser.movements;
 
+  // @ts-ignore
   userMovements.innerHTML = ''; //Reseta os movimentos
 
   auxiliarMovements.forEach(function(mov, index){
+    // @ts-ignore
     type = mov[0] > 0 ? 'deposit' : 'withdrawal';
     
     html = `<div class="table__card">
                 <div class="table__info">
                     <p class="table__title table__title--${type}">${index+1} ${type}</p>
-                    <p class="table__date">${formatDateString(mov[1])}</p>
+                    <p class="table__date">${formatDateString(
+// @ts-ignore
+                    mov[1])}</p>
                 </div>
                 
-                <p class="table__value table__value--${type}">${formatMoneyString(currentUser, mov[0])}</p>
+                <p class="table__value table__value--${type}">${formatMoneyString(currentUser, 
+// @ts-ignore
+                mov[0])}</p>
             </div>`;
     
+    // @ts-ignore
     userMovements.insertAdjacentHTML('afterbegin', html);
   });
 }
@@ -245,6 +260,7 @@ function showMovements(currentUser, toSort = false){
  * @param {Array<Array<number|string>>} movements - Logged User Account Movements
  */
 function calculateAmountIn(movements){
+  // @ts-ignore
   return movements.filter((value) => value[0] > 0).reduce((acumulator,value) => acumulator+value[0], 0);
 }
 
@@ -253,6 +269,7 @@ function calculateAmountIn(movements){
  * @param {Array<Array<number|string>>} movements - Logged User Account Movements
  */
 function calculateAmountOut(movements){
+  // @ts-ignore
   return movements.filter((value) => value[0] < 0).reduce((acumulator,value) => acumulator+value[0], 0);
 }
 
@@ -261,13 +278,17 @@ function calculateAmountOut(movements){
  * @param {Array<Array<number|string>>} movements - Logged User Account Movements
  */
 function calculateInterest(movements){
+  // @ts-ignore
   return movements.filter((value) => value[0] > 0).map(dep => dep[0]*1.2/100).reduce((acc,value)=>acc+value, 0)
 }
 
 /* Atualiza o sumário da aplicação */
 function showSummary(movements){
+  // @ts-ignore
   userAmountIn.textContent = formatMoneyString(currentUser, calculateAmountIn(movements));
+  // @ts-ignore
   userAmountOut.textContent = formatMoneyString(currentUser, calculateAmountOut(movements));
+  // @ts-ignore
   userAmountInterest.textContent = formatMoneyString(currentUser, calculateInterest(movements));
 }
 
@@ -285,18 +306,22 @@ function updateUI(currentUser){
 function logOut(){
   currentUserIndex = -1;
   currentUser = {};
+  // @ts-ignore
   mainSection.style.opacity = '0';
+  // @ts-ignore
   loginPresentation.textContent = 'Log in to get started';
 }
 
 /* Manipulação da DOM */
 
+// @ts-ignore
 loginBtn.addEventListener('click', function(e){
   e.preventDefault();
 
   let indexIfFind = -1;
   /*Verifica o username*/
   let loginTentativeUser = accounts.some(function(acc, index){
+    // @ts-ignore
     if (acc.username === loginUsername.value) {
       indexIfFind = index;
       return true;
@@ -304,18 +329,23 @@ loginBtn.addEventListener('click', function(e){
   });
 
   /*Verifica o pin do usuário*/
+  // @ts-ignore
   if (loginTentativeUser && accounts[indexIfFind].pin === Number(loginPin.value)){
     /*Seta o usuário atual*/
     currentUser = accounts[indexIfFind];
     currentUserIndex = indexIfFind;
 
     /* Atualiza o texto de apresentação */
+    // @ts-ignore
     loginPresentation.textContent = `Good Night, ${accounts[indexIfFind].owner.split(' ')[0]}!`;
 
     /*Reseta o campo de login*/
+    // @ts-ignore
     loginPin.value = '';
+    // @ts-ignore
     loginUsername.value = '';
 
+    // @ts-ignore
     mainSection.style.opacity = '100';
     resetTimer(timer);
     initiateLogOutTimer();
@@ -323,15 +353,19 @@ loginBtn.addEventListener('click', function(e){
   }
 })
 
+// @ts-ignore
 sortMovementsButton.addEventListener('click', function (e) {
   e.preventDefault();
   alreadySorted = !alreadySorted;
   showMovements(currentUser, alreadySorted);
 })  
 
+// @ts-ignore
 transferBtn.addEventListener('click', function(e){
   e.preventDefault();
+  // @ts-ignore
   let targetUserExist = accounts.findIndex((account) => account.username === transferUserDestiny.value);
+  // @ts-ignore
   let transferAmount = Number(transferUserAmount.value);
   let dateOfTransfer = new Date().toISOString();
 
@@ -341,26 +375,35 @@ transferBtn.addEventListener('click', function(e){
     updateUI(currentUser);
   }
 
+  // @ts-ignore
   transferUserDestiny.value = '';
+  // @ts-ignore
   transferUserAmount.value = '';
 })
 
+// @ts-ignore
 loanBtn.addEventListener('click', function (e){
   e.preventDefault();
 
+  // @ts-ignore
   let loanAmount = Number(resquestLoan.value);
   
   if(currentUser.movements.some((mov) => mov[0] > 0.1*loanAmount)){
     currentUser.movements.push([loanAmount, new Date().toISOString()]);
     updateUI(currentUser);
+    // @ts-ignore
     resquestLoan.value = '';
   }
 })
 
+// @ts-ignore
 closeBtn.addEventListener('click', function(e){
   e.preventDefault();
+  // @ts-ignore
   if(currentUser.username === closeAccountUser.value && Number(closeAccountPin.value) === currentUser.pin){
+    // @ts-ignore
     closeAccountUser.value = '';
+    // @ts-ignore
     closeAccountPin.value = '';
     accounts.splice(currentUserIndex, 1);
     logOut();
